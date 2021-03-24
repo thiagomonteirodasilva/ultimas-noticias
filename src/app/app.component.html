@@ -1,0 +1,25 @@
+<div class="container">
+    <form onsubmit="return false">
+        <div class="form-group">
+            <label for="assunto-input">Veja a notícia sobre o assunto que você deseja</label>
+            <input type="text" id="assunto-input" [(ngModel)]="assunto" placeholder="Digite o assunto desejado" class="form-control" [ngModelOptions]="{standalone:true}">
+        </div>
+        <button class="btn btn-primary" (click)="noticias()">Buscar</button>
+    
+        <div class="mt-4" *ngIf="arrNoticias != '' || arrNoticias != undefined">
+            <div class="mt-3" *ngFor="let noticia of arrNoticias">
+                <div class="card" (click)="abreNoticia(noticia.url)">
+                    <div class="card-body">
+                        <img class="w-100" src="{{noticia.urlToImage}}">
+                        <h5>{{noticia.title}}</h5>
+                        <p>{{noticia.description}}</p>
+                        <p><small class="text-muted">{{noticia.source.name}}</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mt-4" *ngIf="arrNoticias == ''">
+            <h5>Sua busca não retornou resultados. Verifique o que foi digitado e tente novamente</h5>
+        </div>
+    </form>
+</div>
